@@ -152,7 +152,7 @@ namespace Filmy.DAL
                     DataDodania = new DateTime(2018, 4, 23),
                     Rezyser = "Anthony Russo, Joe Russo"
                 }
-                );;
+                );
         }
     }
 }
