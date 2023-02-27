@@ -60,7 +60,7 @@ namespace Filmy.DAL
                     Opis = "Strudzony życiem komik popada w obłęd i staje się psychopatycznym mordercą.",
                     Cena = 10,
                     DataDodania = new DateTime(2019, 8, 31),
-                    Rezyser=""
+                    Rezyser= "Todd Phillips"
                 },
                 new Film()
                 {
@@ -70,7 +70,7 @@ namespace Filmy.DAL
                     Opis = "Dwóch policjantów stara się złapać seryjnego mordercę wybierającego swoje ofiary według specjalnego klucza - siedmiu grzechów głównych.",
                     Cena = 15,
                     DataDodania = new DateTime(1995, 9, 15),
-                    Rezyser = ""
+                    Rezyser = "David Fincher"
                 },
                 new Film()
                 {
@@ -80,7 +80,7 @@ namespace Filmy.DAL
                     Opis = "Sparaliżowany milioner zatrudnia do opieki młodego chłopaka z przedmieścia, który właśnie wyszedł z więzienia.",
                     Cena = 20,
                     DataDodania = new DateTime(2011, 9, 23),
-                    Rezyser = ""
+                    Rezyser = "Olivier Nakache, Éric Toledano"
                 },
                 new Film()
                 {
@@ -90,7 +90,7 @@ namespace Filmy.DAL
                     Opis = "Zamknięty w obozie koncentracyjnym wraz z synem Guido próbuje przekonać chłopca, że okrutna rzeczywistość jest jedynie formą zabawy dla dorosłych.",
                     Cena = 25,
                     DataDodania = new DateTime(1997, 12, 20),
-                    Rezyser = ""
+                    Rezyser = "Roberto Benigni, Vincenzo Cerami"
                 },
                 new Film()
                 {
@@ -100,7 +100,7 @@ namespace Filmy.DAL
                     Opis = "Zamknięty w obozie koncentracyjnym wraz z synem Guido próbuje przekonać chłopca, że okrutna rzeczywistość jest jedynie formą zabawy dla dorosłych.",
                     Cena = 30,
                     DataDodania = new DateTime(1979, 5, 25),
-                    Rezyser = ""
+                    Rezyser = "Ridley Scott"
                 },
                 new Film()
                 {
@@ -110,7 +110,7 @@ namespace Filmy.DAL
                     Opis = "Jack podejmuje pracę stróża odciętego od świata hotelu Overlook. Wkrótce idylla zamienia się w koszmar.",
                     Cena = 5,
                     DataDodania = new DateTime(1980, 5, 23),
-                    Rezyser = ""
+                    Rezyser = "Stanley Kubrick"
                 },
                 new Film()
                 {
@@ -120,7 +120,7 @@ namespace Filmy.DAL
                     Opis = "Cierpiący na bezsenność mężczyzna poznaje gardzącego konsumpcyjnym stylem życia Tylera Durdena, który jest jego zupełnym przeciwieństwem.",
                     Cena = 15,
                     DataDodania = new DateTime(1999, 9, 10),
-                    Rezyser = ""
+                    Rezyser = "David Fincher"
                 },
                 new Film()
                 {
@@ -130,7 +130,7 @@ namespace Filmy.DAL
                     Opis = "Czasy, gdy technologia pozwala na wchodzenie w świat snów. Złodziej Cobb ma za zadanie wszczepić myśl do śpiącego umysłu.",
                     Cena = 12,
                     DataDodania = new DateTime(2010, 7, 8),
-                    Rezyser = ""
+                    Rezyser = "Christopher Nolan"
                 },
                 new Film()
                 {
@@ -140,7 +140,7 @@ namespace Filmy.DAL
                     Opis = "Po ponad 20 latach służby w lotnictwie marynarki wojennej, Pete Maverick Mitchell zostaje wezwany do legendarnej szkoły Top Gun. Ma wyszkolić nowe pokolenie pilotów do niezwykle trudnej misji.",
                     Cena = 14,
                     DataDodania = new DateTime(2022, 5, 18),
-                    Rezyser = ""
+                    Rezyser = "Joseph Kosinski"
                 },
                 new Film()
                 {
@@ -150,7 +150,7 @@ namespace Filmy.DAL
                     Opis = "Potężny Thanos zbiera Kamienie Nieskończoności w celu narzucenia swojej woli wszystkim istnieniom we wszechświecie. Tylko drużyna superbohaterów znanych jako Avengers może go powstrzymać.",
                     Cena = 21,
                     DataDodania = new DateTime(2018, 4, 23),
-                    Rezyser = ""
+                    Rezyser = "Anthony Russo, Joe Russo"
                 }
                 );;
         }
