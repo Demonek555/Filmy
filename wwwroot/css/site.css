@@ -69,3 +69,22 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+.menu-bar{
+    display: flex;
+    justify-content: center;
+    background-color: lightblue;
+    height: 6rem;
+}
+.menu{
+    display: flex;
+    flex-direction: row;
+}
+.menu-link{
+    display:block;
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    margin-right: 2rem;
+    text-align: center;
+}
