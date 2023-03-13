@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Filmy.Models.Kategoria>
+@{
+}
+<header class="menu-bar">
+    <nav class="menu">
+        @foreach (var kategoria in Model)
+        {
+            <a class="menu-link" href="@Url.Action("Lista","Filmy", new{nazwaKategorii=@kategoria.Nazwa.ToUpper()})">
+                @kategoria.Nazwa
+            </a>
+        }
+
+    </nav>
+</header>
