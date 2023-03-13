@@ -53,6 +53,10 @@ namespace Filmy
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "ListaFilmow",
+                    pattern: "Kategoria/{nazwaKategorii}",
+                    defaults: new { controller = "Filmy", action = "Lista" });
+                endpoints.MapControllerRoute(
                     name: "StronyStatyczne",
                     pattern: "Info/{nazwa}",
                     defaults: new {controller="Home",action="StronyStatyczne"});
