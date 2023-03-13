@@ -6,7 +6,7 @@
     <nav  class="menu">
         @foreach(var kategoria in Model)
             {
-                <a href="#" class="menu-link">
+                <a class="menu-link" href="@Url.Action("Lista","Filmy", new{nazwaKategorii=@kategoria.Nazwa.ToUpper()})">
                     @kategoria.Nazwa
                 </a>
             }
