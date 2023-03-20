@@ -22,5 +22,6 @@ namespace Filmy.Models
         public DateTime DataDodania { get; set; }
         public int KategoriaID { get; set; }
         public Kategoria Kategoria { get; set; }
+        public int czasTrwania { get; set; }
     }
 }

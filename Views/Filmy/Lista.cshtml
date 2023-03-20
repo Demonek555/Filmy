@@ -1,26 +1,55 @@
-﻿@model IEnumerable<Filmy.Models.Film>
+﻿@model KategoriaViewModel
 @{
     Layout = "_Layout";
-    ViewData["Title"]= ViewBag.nazwa;
+    ViewData["Title"] = ViewBag.nazwa;
 }
 <table>
     <thead>
         <tr>
             <th>Tytuł filmu</th>
-            <th> Reżyser</th>
+            <th>Reżyser</th>
             <th>Data dodania</th>
-            <th> Cena</th>
+            <th>Cena</th>
+            <th>Czas Trwania</th>
         </tr>
     </thead>
     <tbody>
-        @foreach(var film in Model)
-            {
+        @foreach (var film in Model.FilmyKategorii)
+        {
         <tr>
             <td class="border">@film.Tytul</td>
             <td class="border">@film.Rezyser</td>
             <td class="border">@film.DataDodania.ToString()</td>
             <td class="border">@film.Cena</td>
+            <td class="border">@film.czasTrwania min</td>
         </tr>
-            }
+        }
     </tbody>
 </table>
+<br />
+<h3>Najnowsze filmy!</h3>
+<br/>
+<table>
+    <thead>
+        <tr>
+            <th>Tytuł filmu</th>
+            <th>Reżyser</th>
+            <th>Data dodania</th>
+            <th>Cena</th>
+            <th>Czas Trwania</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model.FilmyNajnowsze)
+        {
+        <tr>
+            <td class="border">@film.Tytul</td>
+            <td class="border">@film.Rezyser</td>
+            <td class="border">@film.DataDodania.ToString()</td>
+            <td class="border">@film.Cena</td>
+            <td class="border">@film.czasTrwania min</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
