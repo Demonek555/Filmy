@@ -1,0 +1,26 @@
+﻿@model Film
+  
+
+<table>
+    <thead>
+        <tr>
+            <th>Tytuł filmu</th>
+            <th>Reżyser</th>
+            <th>Data dodania</th>
+            <th>Cena</th>
+            <th>Czas Trwania</th>
+            <th>Opis</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr>
+            <td class="border">@Model.Tytul</td>
+            <td class="border">@Model.Rezyser</td>
+            <td class="border">@Model.DataDodania</td>
+            <td class="border">@Model.Cena</td>
+            <td class="border">@Model.czasTrwania</td>
+            <td class="border">@Model.Opis</td>
+        </tr>
+    </tbody>
+</table>

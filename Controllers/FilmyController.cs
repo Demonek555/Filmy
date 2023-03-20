@@ -31,5 +31,9 @@ namespace Filmy.Controllers
             ViewBag.nazwa = nazwaKategorii;
             return View(model);
         }
-    }
+        public IActionResult Szczegoly(int Id){
+            var film = db.Filmy.Find(Id);
+            return View(film);
+        }
+        }
 }
