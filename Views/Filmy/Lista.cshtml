@@ -56,4 +56,7 @@
         }
     </tbody>
 </table>
+<div class="container">
+    @await Component.InvokeAsync("FilmyKategorii", new { nazwaKategorii=Model.Kategoria.Nazwa})
+</div>
 

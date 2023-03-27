@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Filmy.Models.Film>
+    @{
+    }
+<div>   
+        @foreach (var film in Model)
+        {
+            <ul>@film.Tytul</ul>
+        }
+</div>

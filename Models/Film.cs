@@ -23,5 +23,6 @@ namespace Filmy.Models
         public int KategoriaID { get; set; }
         public Kategoria Kategoria { get; set; }
         public int czasTrwania { get; set; }
+        public string Plakat { get; set; }
     }
 }
