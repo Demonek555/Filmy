@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Filmy.Models.Film>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = ViewBag.Fraza;
+}
+<table>
+    <thead>
+        <tr>
+            <th>Tytuł filmu</th>
+            <th>Reżyser</th>
+            <th>Data dodania</th>
+            <th>Cena</th>
+            <th>Czas Trwania</th>
+            <th>Więcej</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model)
+        {
+            <tr>
+                <td class="border">@film.Tytul</td>
+                <td class="border">@film.Rezyser</td>
+                <td class="border">@film.DataDodania.ToString()</td>
+                <td class="border">@film.Cena</td>
+                <td class="border">@film.czasTrwania min</td>
+                <td class="border"><a href="@Url.Action("Szczegoly","Filmy",new {Id=film.Id })">Szczegóły</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

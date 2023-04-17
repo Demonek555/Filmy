@@ -52,15 +52,58 @@ namespace Filmy.Controllers
         public ActionResult DodajFilm(DodawanieFilmowViewModel obj)
         {
             obj.film.DataDodania = System.DateTime.Now;
-            var plakatFolderPath = Path.Combine(hostingEnvironment.WebRootPath, "grafiki");
-            var unikatNazwaPlakatu = Guid.NewGuid() + "_" + obj.Plakat.FileName;
-            var plakatPath = Path.Combine(plakatFolderPath, unikatNazwaPlakatu);
-            obj.Plakat.CopyTo(new FileStream(plakatPath, FileMode.Create));
-            obj.film.Plakat = unikatNazwaPlakatu;
-            db.Filmy.Add(obj.film);
-            db.SaveChanges();
+            if (obj.film.Cena == null)
+            {
+                obj.film.Cena = 0.00m;
+            }
+            if (TryValidateModel(obj.film, "Film") && ModelState.IsValid)
+            {
+                obj.film.DataDodania = System.DateTime.Now;
+                var plakatFolderPath = Path.Combine(hostingEnvironment.WebRootPath, "grafiki");
+                var unikatNazwaPlakatu = Guid.NewGuid() + "_" + obj.Plakat.FileName;
+                var plakatPath = Path.Combine(plakatFolderPath, unikatNazwaPlakatu);
+                obj.Plakat.CopyTo(new FileStream(plakatPath, FileMode.Create));
+                obj.film.Plakat = unikatNazwaPlakatu;
+                db.Filmy.Add(obj.film);
+                db.SaveChanges();
+                TempData["Dodaj"] = "Dodano film";
+                return RedirectToAction("DodajFilm");
+            }
+            
+            var kategoria = db.Kategorie.ToList();
+            obj.kategoria = kategoria;
+            return View(obj);
 
-            return RedirectToAction("DodajFilm");
+        }
+        [HttpPost]
+        public IActionResult Szukaj(string tekst)
+        {
+            if (!String.IsNullOrEmpty(tekst))
+            {
+                var filmy = db.Filmy.Where(f => f.Tytul.Contains(tekst));
+                ViewBag.Fraza = tekst;
+                filmy.ToList();
+                return View(filmy);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public IActionResult EdytujFilm(int filmId)
+        {
+            var film = db.Filmy.Where(f => f.Id == filmId).FirstOrDefault();
+            return View(film);
+        }
+        [HttpPost]
+        public IActionResult EdytujFilm(Film filmEdited)
+        {
+            var film = db.Filmy.Where(f => f.Id == filmEdited.Id).FirstOrDefault();
+            film.Tytul = filmEdited.Tytul;
+            film.Rezyser = filmEdited.Rezyser;
+            film.Opis = filmEdited.Opis;
+            film.DataDodania = DateTime.Now;
+            db.Entry(film).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Szczegóły", new { idFilmu = film.Id });
         }
     }
 }

@@ -9,8 +9,10 @@
                 @kategoria.Nazwa
             </a>
         }
-        <a  href="@Url.Action("DodajFilm","Filmy")">Dodaj Film</a>
+        <a class="menu-link" href="@Url.Action("DodajFilm","Filmy")">Dodaj Film</a>
+        @using (Html.BeginForm("Szukaj", "Filmy", FormMethod.Post, new {@class = "form-inline" })){
+                @Html.TextBox("tekst", null, new { @class = "form-control mr-sm-2", type = "search", placeholder = "Search" });
+                <button class="btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         }
-
     </nav>
 </header>
