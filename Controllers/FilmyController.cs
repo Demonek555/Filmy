@@ -51,7 +51,7 @@ namespace Filmy.Controllers
         [HttpPost]
         public ActionResult DodajFilm(DodawanieFilmowViewModel obj)
         {
-            obj.film.DataDodania = System.DateTime.Now;
+
             if (obj.film.Cena == null)
             {
                 obj.film.Cena = 0.00m;
@@ -88,22 +88,40 @@ namespace Filmy.Controllers
             return RedirectToAction("Index", "Home");
         }
         [HttpGet]
-        public IActionResult EdytujFilm(int filmId)
+        public IActionResult EdytujFilm(int id)
         {
-            var film = db.Filmy.Where(f => f.Id == filmId).FirstOrDefault();
+            var film = db.Filmy
+                .Where(film => film.Id == id)
+                .SingleOrDefault();
+
             return View(film);
         }
         [HttpPost]
-        public IActionResult EdytujFilm(Film filmEdited)
+        public IActionResult EdytujFilm(Film model)
         {
-            var film = db.Filmy.Where(f => f.Id == filmEdited.Id).FirstOrDefault();
-            film.Tytul = filmEdited.Tytul;
-            film.Rezyser = filmEdited.Rezyser;
-            film.Opis = filmEdited.Opis;
-            film.DataDodania = DateTime.Now;
-            db.Entry(film).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Szczegóły", new { idFilmu = film.Id });
+            if (TryValidateModel(model, "Film") && ModelState.IsValid)
+            {
+                var film = db.Filmy
+                    .Where(film => film.Id == model.Id)
+                    .SingleOrDefault();
+
+                if (model.Cena == null)
+                {
+                    model.Cena = 0.00m;
+                }
+
+                film.Rezyser = model.Rezyser;
+                film.Tytul = model.Tytul;
+                film.Opis = model.Opis;
+                film.Cena = model.Cena;
+
+                db.Entry(film).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("Szczegoly", new { id = model.Id });
+            }
+
+            return View(model);
         }
     }
 }

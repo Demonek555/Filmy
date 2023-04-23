@@ -10,7 +10,7 @@ namespace Filmy.Models
     public class DodawanieFilmowViewModel
     {
         public Film film { get; set; }
-        [Required(ErrorMessage ="Dodaj Film")]
+        [Required(ErrorMessage = "Dodaj plakat!")]
         public IFormFile Plakat { get; set; }
         public List<Kategoria> kategoria { get; set; }
     }

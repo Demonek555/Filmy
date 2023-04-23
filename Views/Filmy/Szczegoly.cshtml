@@ -1,28 +1,23 @@
 ﻿@model Film
-  
+<h4 class="header-title">
+    @Model.Tytul
+</h4>
 
-<table>
-    <thead>
-        <tr>
-            <th>Tytuł filmu</th>
-            <th>Reżyser</th>
-            <th>Data dodania</th>
-            <th>Cena</th>
-            <th>Czas Trwania</th>
-            <th>Opis</th>
-            <th>Plakat</th>
-        </tr>
+<div class="row">
+    <div class="col-3">
+        <img src="~/grafiki/@Model.Plakat" style="width: 200px;" />
+    </div>
+    <div class="col-6">
+        <p>@Model.Opis</p>
 
-    </thead>
-    <tbody>
-        <tr>
-            <td class="border">@Model.Tytul</td>
-            <td class="border">@Model.Rezyser</td>
-            <td class="border">@Model.DataDodania</td>
-            <td class="border">@Model.Cena</td>
-            <td class="border">@Model.czasTrwania</td>
-            <td class="border">@Model.Opis</td>
-            <td class="border"><img src="~/grafiki/@Model.Plakat"/></td>
-        </tr>
-    </tbody>
-</table>
+        <ol>
+            <ul>
+                <li>Rezyser: @Model.Rezyser</li>
+                <li>Cena: @Model.Cena</li>
+                <li>Data dodania: @Model.DataDodania.ToShortDateString()</li>
+                <li>Czas trwania: @Model.DataDodania</li>
+                <li><a href="@Url.Action("EdytujFilm", "Filmy", new { id = Model.Id })">Edytuj</a></li>
+            </ul>
+        </ol>
+    </div>
+</div>
