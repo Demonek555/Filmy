@@ -114,6 +114,7 @@ namespace Filmy.Controllers
                 film.Tytul = model.Tytul;
                 film.Opis = model.Opis;
                 film.Cena = model.Cena;
+                film.DataDodania = model.DataDodania;
 
                 db.Entry(film).State = EntityState.Modified;
                 db.SaveChanges();

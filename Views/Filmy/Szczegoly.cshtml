@@ -15,7 +15,8 @@
                 <li>Rezyser: @Model.Rezyser</li>
                 <li>Cena: @Model.Cena</li>
                 <li>Data dodania: @Model.DataDodania.ToShortDateString()</li>
-                <li>Czas trwania: @Model.DataDodania</li>
+                <li>Czas trwania: @Model.czasTrwania m</li>
+                <li>Opis: @Model.Opis</li>
                 <li><a href="@Url.Action("EdytujFilm", "Filmy", new { id = Model.Id })">Edytuj</a></li>
             </ul>
         </ol>
