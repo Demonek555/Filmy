@@ -27,6 +27,7 @@ namespace Filmy
         {
             services.AddControllersWithViews();
             services.AddDbContext<FilmyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FilmyCS")));
+            services.AddSession();
                 
         }
 
@@ -49,6 +50,7 @@ namespace Filmy
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
