@@ -18,6 +18,7 @@
                 <li>Czas trwania: @Model.czasTrwania m</li>
                 <li>Opis: @Model.Opis</li>
                 <li><a href="@Url.Action("EdytujFilm", "Filmy", new { id = Model.Id })">Edytuj</a></li>
+                <li><a href="@Url.Action("DodajDoKoszyka", "Koszyk", new { id = Model.Id })">Dodaj do koszyka</a></li>
             </ul>
         </ol>
     </div>

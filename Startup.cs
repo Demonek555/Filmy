@@ -28,7 +28,7 @@ namespace Filmy
             services.AddControllersWithViews();
             services.AddDbContext<FilmyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FilmyCS")));
             services.AddSession();
-                
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +62,10 @@ namespace Filmy
                     name: "StronyStatyczne",
                     pattern: "Info/{nazwa}",
                     defaults: new {controller="Home",action="StronyStatyczne"});
+                endpoints.MapControllerRoute(
+                    name: "strong-film",
+                    pattern: "film/{id}",
+                    defaults: new { controller = "Filmy", action = "Szczegoly" });
 
                 endpoints.MapControllerRoute(
                     name: "default",

@@ -7,6 +7,6 @@ namespace Filmy.Infrastructure
 {
     public class Consts
     {
-        public static string koszykSessionKey = "koszyk";
+        public static string KoszykSessionKey = "Koszyk";
     }
 }

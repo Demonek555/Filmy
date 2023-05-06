@@ -9,57 +9,80 @@ using System.Threading.Tasks;
 
 namespace Filmy.Controllers
 {
-    public class KoszykControler : Controller
+    public class KoszykController : Controller
     {
-        FilmyContext db;
-        public KoszykControler(FilmyContext db)
+        private readonly FilmyContext filmyContext;
+        public KoszykController(FilmyContext filmyContext)
         {
-            this.db = db;
+            this.filmyContext = filmyContext;
         }
+
         [Route("Koszyk")]
         public IActionResult Index()
         {
-            var cart = SessionHelper.GetObjectFromJson<List<KoszykRzeczy>>(HttpContext.Session, Consts.koszykSessionKey);
-            ViewBag.CenaCalkowita = cart.Sum(item => item.Ilosc * item.Film.Cena);
-            return View(cart);
+            var koszyk = SessionHelper.GetObjectFromJson<List<Koszyk>>(HttpContext.Session, Consts.KoszykSessionKey);
+
+            if (koszyk == null)
+            {
+                koszyk = new List<Koszyk>();
+            }
+
+            ViewBag.CenaCalkowita = koszyk.Sum(item => item.Ilosc * item.Film.Cena);
+
+            return View(koszyk);
         }
+
         [Route("Dodaj/{id}")]
         public IActionResult DodajDoKoszyka(int id)
         {
-            var film = db.Filmy.Find(id);
-            if (SessionHelper.GetObjectFromJson<List<KoszykRzeczy>>(HttpContext.Session, Consts.koszykSessionKey) == null)
+            var film = filmyContext.Filmy.Find(id);
+            var koszyk = SessionHelper.GetObjectFromJson<List<Koszyk>>(HttpContext.Session, Consts.KoszykSessionKey);
+
+            if (koszyk == null)
             {
-                List<KoszykRzeczy> cart = new List<KoszykRzeczy>();
-                cart.Add(new KoszykRzeczy { Film = film, Ilosc = 1, Wartosc = film.Cena });
-                SessionHelper.SetObjectAsJson(HttpContext.Session, Consts.koszykSessionKey, cart);
+                koszyk = new List<Koszyk>();
+                koszyk.Add(new Koszyk
+                {
+                    Film = film,
+                    Ilosc = 1,
+                    Wartosc = film.Cena
+                });
             }
             else
             {
-                List<KoszykRzeczy> cart = SessionHelper.GetObjectFromJson<List<KoszykRzeczy>>(HttpContext.Session, Consts.koszykSessionKey);
-                int index = PobierzIndeks(id);
+                int index = PobierzIndeks(id, koszyk);
+
                 if (index != -1)
                 {
-                    cart[index].Ilosc++;
+                    koszyk[index].Ilosc++;
+                    koszyk[index].Wartosc = +koszyk[index].Film.Cena;
                 }
                 else
                 {
-                    cart.Add(new KoszykRzeczy { Film = film, Ilosc = 1, Wartosc = film.Cena });
+                    koszyk.Add(new Koszyk
+                    {
+                        Film = film,
+                        Ilosc = 1,
+                        Wartosc = film.Cena
+                    });
                 }
-                SessionHelper.SetObjectAsJson(HttpContext.Session, Consts.koszykSessionKey, cart);
             }
+
+            SessionHelper.SetObjectAsJson(HttpContext.Session, Consts.KoszykSessionKey, koszyk);
+
             return RedirectToAction("Index");
         }
 
-        private int PobierzIndeks(int id)
+        private int PobierzIndeks(int id, List<Koszyk> koszyk)
         {
-            List<KoszykRzeczy> cart = SessionHelper.GetObjectFromJson<List<KoszykRzeczy>>(HttpContext.Session, Consts.koszykSessionKey);
-            for(int i = 0; i < cart.Count(); i++)
+            for (int i = 0; i < koszyk.Count; i++)
             {
-                if (cart[i].Film.Id.Equals(id))
+                if (koszyk[i].Film.Id == id)
                 {
                     return i;
                 }
             }
+
             return -1;
         }
     }
