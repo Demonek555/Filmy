@@ -51,7 +51,7 @@
             <td class="border">@film.DataDodania.ToString()</td>
             <td class="border">@film.Cena</td>
             <td class="border">@film.czasTrwania min</td>
-            <td class="border"><a href="">Szczegóły</a></td>
+            <td class="border"><a href="@Url.Action("Szczegoly","Filmy",new {Id=film.Id })">Szczegóły</a></td>
         </tr>
         }
     </tbody>
