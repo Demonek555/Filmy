@@ -1,25 +1,50 @@
 ﻿@model IEnumerable<Koszyk>
 
-<h4 class="header-title">
-    Zawartość koszyka
-</h4>
+    <body>
+        <h4 class="header-title">
+            Zawartość koszyka
+        </h4>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Tytul</th>
-            <th>Ilość</th>
-            <th>Cena</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var koszyk in Model)
-        {
-            <tr>
-                <td><a href="@Url.Action("Szczegoly", "Filmy", new { id = koszyk.Film.Id })">@koszyk.Film.Tytul</a></td>
-                <td>@koszyk.Ilosc</td>
-                <td>@koszyk.Wartosc</td>
-            </tr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Tytul</th>
+                    <th>Ilość</th>
+                    <th>Cena</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var koszyk in Model)
+                {
+                    <tr id="cartItem-@koszyk.Film.Id">
+                        <td><a href="@Url.Action("Szczegoly", "Filmy", new { id = koszyk.Film.Id })">@koszyk.Film.Tytul</a></td>
+                        <td><span id="itemQuantity-@koszyk.Film.Id">@koszyk.Ilosc</span></td>
+                        <td>@koszyk.Wartosc</td>
+                        <td><a class="trash" href="#">&#128465</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div>
+            Razem: @ViewBag.CenaCalkowita zł
+        </div>
+        @section Scripts{
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(".trash").click(function () {
+                var ElementKoszaId = $(this).data('id');
+                console.log(ElementKoszaId);
+                if (ElementKoszaId != '') {
+                    $.post("/Koszyk/UsunZKoszyka", { "id": ElementKoszaId }, function (response) {
+                        if (response.IloscRzeczy == 0) {
+                            $("#cartItem-" + response.rzeczId).fadeOut("slow");
+                        }
+                        else {
+                            $("itemQuantity-" + response.itemId).text(response.iloscRzeczy);
+                        }
+                    }
+                }
+            });
+        </script>
         }
-    </tbody>
-</table>
+    </body>

@@ -85,5 +85,15 @@ namespace Filmy.Controllers
 
             return -1;
         }
+        public IActionResult UsunZKoszyka(int id)
+        {
+            var model = new UsunRzeczyViewModel()
+            {
+                RzeczId=id,
+                IloscRzeczy=MenadzerKoszyka.UsunZKoszyka(HttpContext.Session,id),
+                WartoscKoszyka=MenadzerKoszyka.UstawWartosc(HttpContext.Session)
+            };
+            return Json(model);
+        }
     }
 }
