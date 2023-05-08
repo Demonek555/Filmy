@@ -55,7 +55,7 @@ namespace Filmy.Controllers
                 if (index != -1)
                 {
                     koszyk[index].Ilosc++;
-                    koszyk[index].Wartosc = +koszyk[index].Film.Cena;
+                    koszyk[index].Wartosc = koszyk[index].Wartosc+koszyk[index].Film.Cena;
                 }
                 else
                 {
