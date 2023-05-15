@@ -31,6 +31,7 @@ namespace Filmy.Infrastructure
             return ilosc;
         }
 
+
         private static List<Koszyk> WezRzeczy(ISession session)
         {
             var cart = SessionHelper.GetObjectFromJson<List<Koszyk>>(session, Consts.KoszykSessionKey);

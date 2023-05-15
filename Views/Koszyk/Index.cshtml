@@ -20,7 +20,7 @@
                         <td><a href="@Url.Action("Szczegoly", "Filmy", new { id = koszyk.Film.Id })">@koszyk.Film.Tytul</a></td>
                         <td><span id="itemQuantity-@koszyk.Film.Id">@koszyk.Ilosc</span></td>
                         <td>@koszyk.Wartosc</td>
-                        <td><a class="trash" href="#">&#128465</a></td>
+                        <td><a class="trash" data-id="@koszyk.Film.Id" href="#">&#128465</a></td>
                     </tr>
                 }
             </tbody>
@@ -29,21 +29,23 @@
             Razem: @ViewBag.CenaCalkowita zł
         </div>
         @section Scripts{
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript">
             $(".trash").click(function () {
                 var ElementKoszaId = $(this).data('id');
-                console.log(ElementKoszaId);
+                
                 if (ElementKoszaId != '') {
                     $.post("/Koszyk/UsunZKoszyka", { "id": ElementKoszaId }, function (response) {
-                        if (response.IloscRzeczy == 0) {
+                        if (response.iloscRzeczy == 0) {
+                            console.log(ElementKoszaId);
                             $("#cartItem-" + response.rzeczId).fadeOut("slow");
                         }
                         else {
                             $("itemQuantity-" + response.itemId).text(response.iloscRzeczy);
                         }
-                    }
+                    });
                 }
+                window.location = window.location;
             });
         </script>
         }

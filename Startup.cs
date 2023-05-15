@@ -1,4 +1,5 @@
 using Filmy.DAL;
+using Filmy.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,8 +26,18 @@ namespace Filmy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<AppUser, AppRole>(options =>
+             {
+                 options.User.RequireUniqueEmail = true;
+                 options.Password.RequireNonAlphanumeric = false;
+                 options.Password.RequiredLength = 8;
+                 options.Password.RequireDigit = false;
+             }).AddEntityFrameworkStores<IdentityAppContext>();
+
+            services.AddDbContext<IdentityAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FilmyCS")));
             services.AddControllersWithViews();
             services.AddDbContext<FilmyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FilmyCS")));
+            
             services.AddSession();
 
         }
@@ -46,9 +57,10 @@ namespace Filmy
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            //Add-Migration Int -Context IdentityAppContext (wywo³aæ u siebie) w konsola menad¿er)
+            //Update-Database Int -Context IdentityAppContext (potem to wywolaæ)
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();
 
