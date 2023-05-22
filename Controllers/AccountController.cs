@@ -57,7 +57,7 @@ namespace Filmy.Controllers
     public async Task<IActionResult> Register(AppUser user)
     {
 
-        IdentityResult result = await UserMgr.CreateAsync(user);
+        IdentityResult result = await UserMgr.CreateAsync(user, user.Password);
         var errorList = result.Errors.ToList();
         ViewBag.message = string.Join(" ", errorList.Select(e => e.Description));
         return View();
