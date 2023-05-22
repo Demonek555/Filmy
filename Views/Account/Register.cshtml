@@ -1,0 +1,29 @@
+﻿@model Filmy.Models.AppUser
+@{ 
+
+    Layout = "_Layout";
+    ViewData["Title"] = "Rejestracja";
+}
+<h2>Rejestracja</h2>
+<div class="alert-info">@ViewBag.message</div>
+
+
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post)){
+<div class="container">
+    <div class="row">
+        <div class="col col-lg-8">
+            <ul class="list-group">
+                <li class="list-group-item">Login<br />@Html.TextBoxFor(u => u.UserName, new { @class = "form-control" })</li>
+                <li class="list-group-item">Hasło<br />@Html.PasswordFor(u => u.Password, new { @class = "form-control" })</li>
+                <li class="list-group-item">Imie<br />@Html.TextBoxFor(u => u.FirstName, new { @class = "form-control" })</li>
+                <li class="list-group-item">Nazwisko<br />@Html.TextBoxFor(u => u.LastName, new { @class = "form-control" })</li>
+                <li class="list-group-item">Email<br />@Html.TextBoxFor(u => u.Email, new { @class = "form-control" })</li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<button type="submit" class="btn btn-primary">Rejestruj</button>
+    
+}

@@ -1,5 +1,6 @@
 ﻿using Filmy.DAL;
 using Filmy.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,7 @@ namespace Filmy.Controllers
             ViewBag.nazwa = nazwaKategorii;
             return View(model);
         }
+        [Authorize]
         public IActionResult Szczegoly(int Id)
         {
             var film = db.Filmy.Find(Id);
